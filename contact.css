@@ -160,6 +160,15 @@ input.error, textarea.error {
 
 }
 
-a, button, input, textarea, select {
-    cursor: auto;
+/* Allow pointer events for content and form */
+.content, .contact-form, input, textarea, button, label {
+    pointer-events: auto;
+}
+
+/* Use normal/text cursor for form fields and interactive elements */
+input, textarea {
+    cursor: text;
+}
+button, a, label, select {
+    cursor: pointer;
 }

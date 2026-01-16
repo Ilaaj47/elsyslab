@@ -159,3 +159,7 @@ input.error, textarea.error {
     }
 
 }
+
+a, button, input, textarea, select {
+    cursor: auto;
+}

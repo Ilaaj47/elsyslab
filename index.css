@@ -210,3 +210,7 @@ nav ul {
     .navbar-glass { padding: 8px 0; border-radius: 0; }
 }
 
+a, button, input, textarea, select {
+    cursor: auto;
+}
+

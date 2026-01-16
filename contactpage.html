@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="icon" href="./images/mainLogoCropped.png" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="contactpage.css">
+</head>
+<body>
+   <div class="navbar-glass">
+    <nav>
+        <a href="index.html">
+        <img src="./images/mainLogo.png" alt="ELSYS logo" class="nav-logo">
+        </a>
+        <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="contactpage.html">Contact</a></li>
+        </ul>
+    </nav>
+   </div>
+
+   <div class="content">
+    <h2>Contacteer ons</h2>
+    <p>Heb je een vraag over een project of wil je gewoon even sparren? Laat een bericht achter.</p>
+    
+    <form id="contactForm" class="contact-form" novalidate>
+      <div class="form-group">
+        <label for="name">Naam</label>
+        <input type="text" id="name" name="name" placeholder="Jouw naam">
+        <div class="error-msg" id="nameError">Naam is verplicht.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="jouw@email.com">
+        <div class="error-msg" id="emailError">Vul een geldig emailadres in.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Bericht</label>
+        <textarea id="message" name="message" placeholder="Waar kunnen we je mee helpen?"></textarea>
+        <div class="error-msg" id="messageError">Bericht mag niet leeg zijn.</div>
+      </div>
+
+      <button type="submit" id="submitBtn">Verstuur bericht</button>
+    </form>
+
+    <div class="contact-info">
+      <div class="contact-details">
+        <div><span class="icon">📍</span> <span>Gent, België</span></div>
+        <div><span class="icon">📧</span> <a href="mailto:elias@elsys.be">elias@elsys.be</a></div>
+        <div><span class="icon">💻</span> <a href="https://elsys.be" target="_blank">www.elsys.be</a></div>
+      </div>
+
+      <div class="socials">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+   </div>
+
+    <div class="spotlight-layer"></div>
+
+    <script src="index.js"></script>
+</body>
+</html>

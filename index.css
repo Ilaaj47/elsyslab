@@ -1,88 +1,96 @@
 /* 1. Setup */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #e4e2dd; /* Diepzwart */
-            color: #222222
-            cursor: crosshair;
-        }
+:root {
+    --spotlight-size: 300px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e4e2dd; /* background */
+    color: #222222;
+    cursor: crosshair;
+}
 
         /* 2. De Content (Bovenste laag) */
-        .content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            pointer-events: none; /* Muis gaat erdoorheen */
-        }
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 4rem 1rem;
+    box-sizing: border-box;
+    pointer-events: none; /* Muis gaat erdoorheen */
+}
 
-        h1 {
-            font-size: 10rem;
-            margin: 0;
-            letter-spacing: -4px;
-            /* Zorgt dat de tekst mengt met het licht */
-            mix-blend-mode: exclusion; 
-        }
+h1 {
+    font-size: clamp(3rem, 10vw, 10rem);
+    margin: 0;
+    letter-spacing: -0.25rem;
+    mix-blend-mode: exclusion;
+    text-align: center;
+}
 
-        p {
-            font-size: 1.2rem;
-            opacity: 0.6;
-            letter-spacing: 2px;
-        }
+p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.8;
+    letter-spacing: 2px;
+    text-align: center;
+    max-width: 80ch;
+}
 
         /* 3. De 'Verborgen' Laag (Het lichteffect) */
-        .spotlight-layer {
-            position: fixed;
+.spotlight-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    /* De 'Tech' achtergrond die je onthult */
+    background-image:
+        linear-gradient(#222222 1px, transparent 1px),
+        linear-gradient(90deg, #222222 1px, transparent 1px);
+    background-size: 50px 50px;
+
+    /* DE TRUC: Masking met CSS variabelen */
+    mask-image: radial-gradient(
+        circle var(--spotlight-size) at var(--x, 50%) var(--y, 50%),
+        black 0%,
+        transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+        circle var(--spotlight-size) at var(--x, 50%) var(--y, 50%),
+        black 0%,
+        transparent 100%
+    );
+}
+
+        /* Glass effect parent for navbar */
+        .navbar-glass {
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 1;
-            
-            /* De 'Tech' achtergrond die je onthult */
-            background-image: 
-                linear-gradient(#222222 1px, transparent 1px),
-                linear-gradient(90deg, #222222 1px, transparent 1px);
-            background-size: 50px 50px;
-            
-            /* DE TRUC: Masking met CSS variabelen */
-            mask-image: radial-gradient(
-                circle 300px at var(--x, 50%) var(--y, 50%), 
-                black 0%, 
-                transparent 100%
-            );
-            -webkit-mask-image: radial-gradient(
-                circle 300px at var(--x, 50%) var(--y, 50%), 
-                black 0%, 
-                transparent 100%
-            );
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 0 0 16px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        /* Glass effect parent for navbar */
-.navbar-glass {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.18); /* More transparent for glass effect */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 0 0 16px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 16px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /* Center nav content inside glass */
 nav {
@@ -93,26 +101,112 @@ nav {
     justify-content: space-between;
     background: none;
     box-shadow: none;
-    padding: 0 32px;
+    padding: 0 20px;
+    gap: 16px;
 }
 
 nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #222222;
-            transition: color 0.3s;
-            
-        }
+nav a {
+    margin-left: 0;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: #222222;
+    transition: color 0.2s, opacity 0.2s;
+}
 
-        nav img {
-            width: 64px;
-            height: 64px;
-        }
+nav img {
+    width: clamp(40px, 6vw, 64px);
+    height: auto;
+}
+
+/* Hamburger button - hidden on larger screens */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+.nav-toggle .bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #222222;
+    margin: 4px 0;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Mobile menu (hidden by default) */
+nav ul {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    nav ul {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        width: 70%;
+        max-width: 320px;
+        height: calc(100% - 64px);
+        background: rgba(255,255,255,0.96);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        transform: translateX(100%);
+        opacity: 0;
+        box-shadow: -8px 0 32px rgba(0,0,0,0.08);
+    }
+
+    nav ul.open {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    nav ul li { margin: 0; }
+
+    .navbar-glass { padding: 8px 0; }
+}
+
+/* When nav is open, animate hamburger into an X */
+.nav-toggle.open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open .bar:nth-child(2) { opacity: 0; }
+.nav-toggle.open .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+    .spotlight-layer { background-size: 40px 40px; }
+    :root { --spotlight-size: 220px; }
+}
+
+@media (max-width: 768px) {
+    nav { padding: 0 12px; }
+    nav ul { gap: 8px; }
+    nav a { padding: 4px 6px; font-size: 0.95rem; }
+    .content { padding: 3rem 1rem; }
+    :root { --spotlight-size: 160px; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: clamp(2.4rem, 12vw, 4.5rem); }
+    p { font-size: 0.95rem; }
+    .spotlight-layer { background-size: 30px 30px; }
+    :root { --spotlight-size: 120px; }
+    .navbar-glass { padding: 8px 0; border-radius: 0; }
+}
 

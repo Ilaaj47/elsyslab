@@ -71,6 +71,7 @@ p {
         black 0%,
         transparent 100%
     );
+    pointer-events: none;
 }
 
         /* Glass effect parent for navbar */
@@ -216,10 +217,10 @@ nav ul {
 }
 
 /* Use normal/text cursor for form fields and interactive elements */
+nav a, button, label, select {
+    cursor: pointer;
+}
 input, textarea {
     cursor: text;
-}
-button, a, label, select {
-    cursor: pointer;
 }
 

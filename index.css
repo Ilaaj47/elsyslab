@@ -211,6 +211,160 @@ nav ul {
     .navbar-glass { padding: 8px 0; border-radius: 0; }
 }
 
+/* Remove main background and box styling */
+main {
+    max-width: 900px;
+    margin: 48px auto 0 auto;
+    padding: 0 16px 64px 16px;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 2;
+    position: relative;
+}
+
+/* Center all sections and their content */
+.intro-section,
+.services-section,
+.portfolio-section {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e4e2dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: none;
+}
+
+.intro-section:last-child,
+.services-section:last-child,
+.portfolio-section:last-child {
+    border-bottom: none;
+}
+
+.intro-section h2,
+.services-section h2,
+.portfolio-section h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+}
+
+.intro-section p,
+.services-section ul,
+.portfolio-section p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0;
+}
+
+.services-section ul {
+    padding-left: 0;
+    margin: 0;
+    list-style-position: inside;
+    text-align: middle;
+    display: inline-block;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.services-section li {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    text-decoration: none;
+}
+
+/* Portfolio grid and cards */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    margin-top: 24px;
+    justify-items: center;
+    width: 100%;
+}
+
+.portfolio-item {
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+    width: 100%;
+    max-width: 260px;
+    min-height: 320px; /* Ensures a minimum card height */
+    background: none;
+    box-shadow: none;
+    padding: 12px 8px;
+    box-sizing: border-box;
+}
+.portfolio-item:hover {
+    transform: translateY(-4px) scale(1.025);
+    box-shadow: 0 8px 32px rgba(31,38,135,0.13);
+}
+
+.portfolio-item > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.portfolio-item img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    max-height: 160px;
+    border: 1px solid #222222;
+}
+
+.portfolio-item h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.08rem;
+    color: #1a1a1a;
+    text-align: left;
+    word-break: break-word;
+}
+
+.portfolio-item p {
+    font-size: 0.98rem;
+    color: #444;
+    text-align: left;
+    margin: 0;
+    margin-top: 4px;
+    word-break: break-word;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 95%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    main {
+        max-width: 98vw;
+        padding: 0 4vw 40px 4vw;
+    }
+    .portfolio-grid {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 2vw 24px 2vw;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    .portfolio-item img {
+        max-width: 100%;
+    }
+}
+
 /* Allow pointer events for content and form */
 .content, .contact-form, input, textarea, button, label {
     pointer-events: auto;
@@ -222,5 +376,19 @@ nav a, button, label, select {
 }
 input, textarea {
     cursor: text;
+}
+
+button {
+    background-color: none;
+    color: #222222;
+    border: 2px solid #222222;
+    padding: 10px 16px;
+    margin: 40px 0 0 0;
+    font-size: 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-start;
 }
 
